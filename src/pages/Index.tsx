@@ -1,242 +1,244 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import heroImage from "@/assets/hero-image.jpg";
 import aboutImage from "@/assets/about-image.jpg";
 
 const Index = () => {
-  const services = [
-    {
-      title: "Customer Support",
-      description: "24/7 multilingual support to keep your customers satisfied and loyal.",
-    },
-    {
-      title: "Back Office Operations",
-      description: "Streamlined administrative tasks to boost your operational efficiency.",
-    },
-    {
-      title: "Data Entry & Processing",
-      description: "Accurate and timely data management for informed business decisions.",
-    },
-    {
-      title: "Virtual Assistance",
-      description: "Dedicated virtual support to handle your day-to-day business needs.",
-    },
-  ];
-
-  const stats = [
-    { value: "500+", label: "Happy Clients" },
-    { value: "15+", label: "Years Experience" },
-    { value: "50+", label: "Countries Served" },
-    { value: "99%", label: "Client Retention" },
-  ];
-
   const industries = [
-    { name: "Finance", icon: "💰" },
-    { name: "Healthcare", icon: "🏥" },
-    { name: "E-commerce", icon: "🛒" },
-    { name: "Technology", icon: "💻" },
+    { name: "FINANCE", hasImage: true },
+    { name: "HEALTH CARE", hasImage: false },
+    { name: "IT", hasImage: false },
+    { name: "FINANCE", hasImage: false },
   ];
 
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center">
-        <div className="absolute inset-0 z-0">
-          <img
-            src={heroImage}
-            alt="Professional business team collaborating"
-            className="w-full h-full object-cover opacity-40"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-transparent" />
-        </div>
+      <section className="py-12 px-6 md:px-12 lg:px-16">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid lg:grid-cols-[1.2fr_1fr] gap-6">
+            {/* Left Hero Card */}
+            <div className="bg-card rounded-lg p-8 md:p-10">
+              <h1 className="text-primary text-3xl md:text-4xl lg:text-5xl font-bold mb-4 italic">
+                Scalable BPO Solutions.
+              </h1>
+              <p className="text-foreground text-lg md:text-xl mb-8">
+                Empowering growth for startups, SMEs, and<br />
+                enterprises worldwide.
+              </p>
+              <div className="rounded-lg overflow-hidden">
+                <img
+                  src={heroImage}
+                  alt="Professional business team collaborating"
+                  className="w-full h-[300px] md:h-[350px] object-cover"
+                />
+              </div>
+            </div>
 
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-2xl">
-            <span className="section-label mb-4 block opacity-0 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-              Scalable BPO Solutions
-            </span>
-            <h1 className="heading-xl mb-6 opacity-0 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              Empowering growth for startups, SMEs, and enterprise{" "}
-              <span className="text-primary">worldwide</span>
-            </h1>
-            <p className="body-lg mb-8 opacity-0 animate-fade-in" style={{ animationDelay: "0.3s" }}>
-              We don't just build businesses. We build{" "}
-              <span className="text-primary font-medium">partnerships</span> and{" "}
-              <span className="text-primary font-medium">long-lasting success</span>.
-            </p>
-            <div className="flex flex-wrap gap-4 opacity-0 animate-fade-in" style={{ animationDelay: "0.4s" }}>
-              <Link to="/contact" className="btn-primary">
-                Get Started
-                <ArrowRight size={18} />
-              </Link>
-              <Link to="/what-we-do" className="btn-outline">
-                Learn More
+            {/* Right Hero Card */}
+            <div className="relative rounded-lg overflow-hidden">
+              <img
+                src={aboutImage}
+                alt="Business consultation meeting"
+                className="w-full h-full object-cover min-h-[400px]"
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                <p className="text-foreground text-sm md:text-base leading-relaxed mb-4">
+                  We're a team of business guides who believe{" "}
+                  <span className="text-primary">starting and growing a company shouldn't be complicated</span>.
+                  With clear steps and hands-on support, we help entrepreneurs turn big ideas into real success stories.
+                </p>
+                <Link 
+                  to="/contact" 
+                  className="inline-flex items-center gap-2 bg-card border border-border text-foreground px-5 py-2.5 rounded text-sm font-medium hover:border-primary transition-colors"
+                >
+                  Contact Us
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Who We Are Section */}
+      <section className="bg-[#E8E4D0] py-16 md:py-24 px-6 md:px-12 lg:px-16">
+        <div className="max-w-[1400px] mx-auto">
+          {/* Section Label */}
+          <div className="flex items-center gap-2 mb-12">
+            <div className="w-3 h-3 bg-primary"></div>
+            <span className="text-xs uppercase tracking-[0.15em] text-black/60 font-mono">WHO WE ARE</span>
+            <div className="flex-1 h-px bg-black/20 ml-4"></div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left - Image Placeholder */}
+            <div className="bg-black aspect-[4/5] rounded-lg"></div>
+
+            {/* Right - Content */}
+            <div>
+              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-black leading-tight mb-6">
+                We don't just build businesses.<br />
+                We build <span className="bg-primary px-1">confidence</span> and<br />
+                <span className="bg-primary px-1">long-lasting success</span>.
+              </h2>
+              <p className="text-black/70 text-base md:text-lg leading-relaxed mb-8">
+                Every company has a story — ours began with a simple frustration: starting a business 
+                felt way too complicated. Paperwork, licenses, legal forms, and strategies written in 
+                jargon no one really understood... it was enough to scare away even the most 
+                passionate entrepreneurs.
+              </p>
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center gap-2 bg-black text-white px-5 py-3 rounded text-sm font-medium hover:bg-black/80 transition-colors"
+              >
+                Contact Us
+                <ArrowRight size={16} />
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="py-24 bg-card">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="section-label mb-4 block">Who We Are</span>
-              <h2 className="heading-lg mb-6">
-                We don't just build businesses. We build{" "}
-                <span className="text-primary">partnerships</span> and{" "}
-                <span className="text-primary">long-lasting success</span>.
-              </h2>
-              <p className="body-md mb-8">
-                At Total Edge, we are committed to delivering exceptional outsourcing solutions 
-                that drive growth and efficiency for businesses of all sizes. Our team of 
-                dedicated professionals works tirelessly to ensure your success.
-              </p>
-              <Link to="/who-we-are" className="btn-outline">
-                Learn More
-                <ChevronRight size={18} />
-              </Link>
-            </div>
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-lg overflow-hidden">
+      {/* What We Do Section */}
+      <section className="bg-background py-16 md:py-24 px-6 md:px-12 lg:px-16">
+        <div className="max-w-[1400px] mx-auto">
+          {/* Section Label */}
+          <div className="flex items-center gap-2 mb-8">
+            <div className="w-3 h-3 bg-primary"></div>
+            <span className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-mono">WHAT WE DO</span>
+            <div className="flex-1 h-px bg-border ml-4"></div>
+          </div>
+
+          <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-foreground leading-tight mb-12">
+            What drives us today,<br />
+            and what inspires<br />
+            us for tomorrow
+          </h2>
+
+          <div className="grid lg:grid-cols-2 gap-0">
+            {/* Left - Images Grid */}
+            <div className="grid grid-cols-2 gap-0">
+              <div className="aspect-square">
                 <img
-                  src={aboutImage}
-                  alt="Our professional team at work"
+                  src={heroImage}
+                  alt="Team member at work"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-primary text-primary-foreground p-6 rounded-lg">
-                <div className="font-mono font-bold text-3xl">15+</div>
-                <div className="text-sm">Years of Excellence</div>
+              <div className="aspect-square">
+                <img
+                  src={aboutImage}
+                  alt="Handshake partnership"
+                  className="w-full h-full object-cover"
+                />
               </div>
+            </div>
+
+            {/* Right - Our Mission Card */}
+            <div className="bg-[#E8E4D0] p-8 md:p-12">
+              <h3 className="text-xl md:text-2xl font-bold text-black mb-6">Our Mission</h3>
+              <ul className="space-y-4 text-black/80 text-sm md:text-base">
+                <li className="flex items-start gap-2">
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-black/60 flex-shrink-0"></span>
+                  <span>Make starting and growing a business <strong>simple, clear, and stress-free</strong></span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-black/60 flex-shrink-0"></span>
+                  <span>Cut through jargon and confusion with easy-to-follow steps</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-black/60 flex-shrink-0"></span>
+                  <span>Blend <strong>strategy with hands-on support</strong> to help entrepreneurs move forward</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-black/60 flex-shrink-0"></span>
+                  <span>Give clients <strong>clarity, confidence, and momentum</strong> to turn ideas into thriving businesses</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <span className="section-label mb-4 block">What Drives Us</span>
-            <h2 className="heading-lg mb-8">
-              What drives us today, and what inspires us for tomorrow
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="card-dark text-left">
-                <h3 className="heading-sm mb-4 text-primary">Our Mission</h3>
-                <p className="body-md">
-                  To empower businesses worldwide with innovative outsourcing solutions 
-                  that drive sustainable growth and operational excellence.
-                </p>
-              </div>
-              <div className="card-dark text-left">
-                <h3 className="heading-sm mb-4 text-primary">Our Vision</h3>
-                <p className="body-md">
-                  To be the global leader in business process outsourcing, recognized 
-                  for our commitment to quality, innovation, and client success.
-                </p>
-              </div>
-            </div>
+      {/* Industries We Serve Section */}
+      <section className="bg-background py-16 md:py-24 px-6 md:px-12 lg:px-16">
+        <div className="max-w-[1400px] mx-auto">
+          {/* Section Label */}
+          <div className="flex items-center gap-2 mb-8">
+            <div className="w-3 h-3 bg-primary"></div>
+            <span className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-mono">INDUSTRIES WE SERVE</span>
+            <div className="flex-1 h-px bg-border ml-4"></div>
           </div>
-        </div>
-      </section>
 
-      {/* Services Section */}
-      <section className="py-24 bg-card">
-        <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
-            <div>
-              <span className="section-label mb-4 block">A Glance at Our</span>
-              <h2 className="heading-lg">
-                Optimized outsourcing across leading industries—finance, 
-                healthcare, e-commerce, and more.
-              </h2>
-            </div>
-            <Link to="/what-we-do" className="btn-outline mt-6 lg:mt-0">
-              Learn More
-              <ChevronRight size={18} />
+            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-foreground leading-tight">
+              Optimized outsourcing across<br />
+              leading industries—finance,<br />
+              healthcare, e-commerce, and<br />
+              more.
+            </h2>
+            <Link 
+              to="/industries"
+              className="mt-6 lg:mt-0 inline-flex items-center gap-2 border border-foreground text-foreground px-6 py-2.5 rounded-full text-sm font-medium uppercase tracking-wider hover:border-primary hover:text-primary transition-colors"
+            >
+              EXPLORE MORE
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
-              <div 
-                key={index} 
-                className="card-dark group cursor-pointer"
-              >
-                <h3 className="heading-sm mb-4 group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="body-md">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Industries Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <span className="section-label mb-4 block">Industries We Serve</span>
-            <h2 className="heading-lg">Expertise across diverse sectors</h2>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {/* Industry Cards Grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {industries.map((industry, index) => (
-              <Link
-                key={index}
-                to="/industries"
-                className="card-dark text-center group hover:border-primary/50 transition-all"
-              >
-                <div className="text-4xl mb-4">{industry.icon}</div>
-                <h3 className="font-semibold group-hover:text-primary transition-colors">
-                  {industry.name}
-                </h3>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-24 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {stats.map((stat, index) => (
-              <div key={index}>
-                <div className="font-mono text-4xl md:text-5xl font-bold mb-2">
-                  {stat.value}
+              <div key={index} className="relative">
+                <div className="aspect-[3/4] bg-[#E8E4D0] rounded-lg overflow-hidden">
+                  {index === 0 && (
+                    <img
+                      src={heroImage}
+                      alt={industry.name}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
-                <div className="text-sm opacity-80">{stat.label}</div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 flex items-center justify-between">
+                  <span className="text-primary text-xs md:text-sm font-mono uppercase tracking-wider">
+                    {industry.name}
+                  </span>
+                  <ArrowRight size={16} className="text-primary" />
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-card">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="section-label mb-4 block">Get Started Today</span>
-            <h2 className="heading-lg mb-6">
-              Ready to transform your business operations?
-            </h2>
-            <p className="body-lg mb-8">
-              Let's discuss how Total Edge can help you achieve your business goals 
-              with our tailored outsourcing solutions.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact" className="btn-primary">
-                Contact Us
-                <ArrowRight size={18} />
-              </Link>
-              <Link to="/what-we-do" className="btn-outline">
-                Explore Services
+      {/* CTA Banner Section */}
+      <section className="py-16 md:py-24 px-6 md:px-12 lg:px-16">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="bg-[#E8E4D0] rounded-lg p-8 md:p-12 relative overflow-hidden">
+            {/* Corner decorations */}
+            <div className="absolute top-0 left-0 w-16 h-16">
+              <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary"></div>
+            </div>
+            <div className="absolute top-0 right-0 w-16 h-16">
+              <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-primary"></div>
+            </div>
+
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="flex items-start gap-4">
+                {/* Decorative Icon */}
+                <div className="text-primary text-3xl">✦</div>
+                <p className="text-black text-base md:text-lg">
+                  Sometimes the hardest part is reaching out<br />
+                  — but once you do, we'll make the rest easy.
+                </p>
+              </div>
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center gap-2 bg-card border border-border text-foreground px-5 py-2.5 rounded text-sm font-medium hover:border-primary transition-colors whitespace-nowrap"
+              >
+                Contact us today
+                <ArrowRight size={16} />
               </Link>
             </div>
           </div>
