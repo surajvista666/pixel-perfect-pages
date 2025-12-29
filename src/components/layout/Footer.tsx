@@ -1,91 +1,194 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const [currentTime, setCurrentTime] = useState(new Date());
 
-  const footerLinks = {
-    company: [
-      { href: "/who-we-are", label: "About Us" },
-      { href: "/what-we-do", label: "Services" },
-      { href: "/industries", label: "Industries" },
-      { href: "/contact", label: "Contact" },
-    ],
-    services: [
-      { href: "/what-we-do", label: "Customer Support" },
-      { href: "/what-we-do", label: "Back Office" },
-      { href: "/what-we-do", label: "Data Entry" },
-      { href: "/what-we-do", label: "Virtual Assistance" },
-    ],
-    industries: [
-      { href: "/industries", label: "Finance" },
-      { href: "/industries", label: "Healthcare" },
-      { href: "/industries", label: "E-commerce" },
-      { href: "/industries", label: "Technology" },
-    ],
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString('en-US', { 
+      hour: 'numeric', 
+      minute: '2-digit', 
+      second: '2-digit',
+      hour12: true 
+    });
   };
 
+  const pages = [
+    { href: "/", label: "Home" },
+    { href: "/who-we-are", label: "About" },
+    { href: "/what-we-do", label: "Services" },
+    { href: "/careers", label: "Career" },
+    { href: "/contact", label: "Contact" },
+  ];
+
+  const services = [
+    "Business planning",
+    "Business setup",
+    "Market research",
+    "Branding & marketing",
+    "Financial guidance",
+    "Ongoing support",
+  ];
+
+  const socials = [
+    { label: "Facebook", href: "#" },
+    { label: "Linkedin", href: "#" },
+    { label: "Youtube", href: "#" },
+    { label: "X/Twitter", href: "#" },
+  ];
+
   return (
-    <footer className="bg-card border-t border-border">
-      <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
-                <span className="text-primary-foreground font-mono font-bold text-lg">T</span>
-              </div>
-              <span className="font-mono font-bold text-lg tracking-wider text-foreground">
-                TOTAL EDGE
-              </span>
-            </Link>
-            <p className="body-md mb-6">
-              Providing End-to-End Specialized Solutions Globally
+    <footer className="bg-background border-t border-border">
+      {/* Contact Info Bar */}
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 py-8 border-b border-border">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Phone */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-2 h-2 bg-primary"></div>
+              <span className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-mono">PHONE</span>
+            </div>
+            <div className="space-y-1">
+              <p className="text-primary text-sm">(217) 555-0134</p>
+              <p className="text-primary text-sm">(217) 555-0142</p>
+            </div>
+          </div>
+
+          {/* Email */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-2 h-2 bg-primary"></div>
+              <span className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-mono">EMAIL</span>
+            </div>
+            <div className="space-y-1">
+              <p className="text-primary text-sm">BPO@email.com</p>
+              <p className="text-primary text-sm">BPO.support@email.com</p>
+            </div>
+          </div>
+
+          {/* Address */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-2 h-2 bg-primary"></div>
+              <span className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-mono">ADDRESS</span>
+            </div>
+            <p className="text-primary text-sm">
+              123 Main Street, Suite<br />
+              200, Austin, TX 78701
             </p>
-            <p className="text-sm text-muted-foreground">
-              © {currentYear} Total Edge. All rights reserved.
-            </p>
           </div>
 
-          {/* Company Links */}
+          {/* Opening Hours */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Company</h4>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-2 h-2 bg-primary"></div>
+              <span className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-mono">OPENING HOURS</span>
+            </div>
+            <div className="space-y-1">
+              <p className="text-foreground text-sm">Mon to Sat: 9.00am - 8.30pm</p>
+              <p className="text-foreground text-sm">Sun: Closed</p>
+              <p className="text-primary text-sm flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                {formatTime(currentTime)}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Footer Links */}
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* Pages */}
+          <div>
+            <div className="flex items-center gap-2 mb-6">
+              <div className="w-2 h-2 bg-primary"></div>
+              <span className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-mono">PAGES</span>
+            </div>
             <ul className="space-y-3">
-              {footerLinks.company.map((link) => (
-                <li key={link.label}>
-                  <Link to={link.href} className="text-muted-foreground hover:text-primary transition-colors">
-                    {link.label}
+              {pages.map((page) => (
+                <li key={page.label} className="border-b border-border pb-3">
+                  <Link 
+                    to={page.href} 
+                    className="text-foreground text-sm hover:text-primary transition-colors"
+                  >
+                    {page.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Services Links */}
+          {/* Services */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Services</h4>
+            <div className="flex items-center gap-2 mb-6">
+              <div className="w-2 h-2 bg-primary"></div>
+              <span className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-mono">SERVICES</span>
+            </div>
             <ul className="space-y-3">
-              {footerLinks.services.map((link, index) => (
-                <li key={index}>
-                  <Link to={link.href} className="text-muted-foreground hover:text-primary transition-colors">
-                    {link.label}
-                  </Link>
+              {services.map((service) => (
+                <li key={service} className="border-b border-border pb-3">
+                  <span className="text-foreground text-sm">{service}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Industries Links */}
+          {/* Socials */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Industries</h4>
+            <div className="flex items-center gap-2 mb-6">
+              <div className="w-2 h-2 bg-primary"></div>
+              <span className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-mono">SOCIALS</span>
+            </div>
             <ul className="space-y-3">
-              {footerLinks.industries.map((link) => (
-                <li key={link.label}>
-                  <Link to={link.href} className="text-muted-foreground hover:text-primary transition-colors">
-                    {link.label}
-                  </Link>
+              {socials.map((social) => (
+                <li key={social.label} className="border-b border-border pb-3">
+                  <a 
+                    href={social.href} 
+                    className="text-foreground text-sm hover:text-primary transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {social.label}
+                  </a>
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Footer */}
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 py-8 border-t border-border">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+          {/* Left Links */}
+          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+            <Link to="#" className="text-primary text-sm hover:underline">Privacy Policy</Link>
+            <Link to="#" className="text-primary text-sm hover:underline">Terms</Link>
+            <span className="text-primary text-sm">©Template by RealMehedi</span>
+          </div>
+
+          {/* Logo */}
+          <div className="flex items-center gap-4">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" className="text-primary">
+              <path d="M8 8H56V16H36V56H28V16H8V8Z" fill="currentColor"/>
+              <path d="M40 24H56V32H48V56H40V24Z" fill="currentColor"/>
+            </svg>
+            <div>
+              <h2 className="text-foreground text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.1em]">
+                TOTAL <span className="text-primary">EDGE</span>
+              </h2>
+              <p className="text-foreground text-sm md:text-base tracking-[0.2em]">
+                Excellence Delivered,Operations Simplified
+              </p>
+            </div>
           </div>
         </div>
       </div>
