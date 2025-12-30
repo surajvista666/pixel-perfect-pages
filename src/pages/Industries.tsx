@@ -18,6 +18,7 @@ const Industries = () => {
         "COMPETITIVE ANALYSIS",
         "PRICING STRATEGY",
       ],
+      isDark: true,
     },
     {
       title: "Market research",
@@ -34,6 +35,7 @@ const Industries = () => {
         "SURVEY CREATION & ANALYSIS",
       ],
       hasViewService: true,
+      isDark: false,
     },
     {
       title: "Branding & marketing",
@@ -50,6 +52,7 @@ const Industries = () => {
         "DIGITAL ADS",
       ],
       hasViewService: true,
+      isDark: false,
     },
     {
       title: "Financial guidance",
@@ -66,12 +69,13 @@ const Industries = () => {
         "FINANCIAL REPORTING",
       ],
       hasViewService: true,
+      isDark: false,
     },
   ];
 
   // Grid icon component
-  const GridIcon = () => (
-    <div className="w-16 h-16 md:w-20 md:h-20 bg-cream flex items-center justify-center">
+  const GridIcon = ({ isDark }: { isDark: boolean }) => (
+    <div className={`w-16 h-16 md:w-20 md:h-20 flex items-center justify-center ${isDark ? 'bg-primary/20' : 'bg-primary/20'}`}>
       <div className="grid grid-cols-4 gap-0.5">
         {Array.from({ length: 16 }).map((_, i) => (
           <div 
@@ -86,13 +90,18 @@ const Industries = () => {
   );
 
   // Corner decorations for images
-  const ImageWithCorners = () => (
+  const ImageWithCorners = ({ isDark }: { isDark: boolean }) => (
     <div className="relative">
       {/* Corner decorations */}
-      <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-primary/50 -translate-x-2 -translate-y-2" />
-      <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-primary/50 translate-x-2 -translate-y-2" />
-      <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-primary/50 -translate-x-2 translate-y-2" />
-      <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-primary/50 translate-x-2 translate-y-2" />
+      <div className={`absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 ${isDark ? 'border-primary/50' : 'border-foreground/30'} -translate-x-2 -translate-y-2`} />
+      <div className={`absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 ${isDark ? 'border-primary/50' : 'border-foreground/30'} translate-x-2 -translate-y-2`} />
+      <div className={`absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 ${isDark ? 'border-primary/50' : 'border-foreground/30'} -translate-x-2 translate-y-2`} />
+      <div className={`absolute bottom-0 right-0 grid grid-cols-2 gap-0.5 translate-x-2 translate-y-2`}>
+        <div className={`w-2 h-2 ${isDark ? 'bg-primary/50' : 'bg-foreground/30'}`}></div>
+        <div className={`w-2 h-2 ${isDark ? 'bg-primary/50' : 'bg-foreground/30'}`}></div>
+        <div className={`w-2 h-2 ${isDark ? 'bg-primary/50' : 'bg-foreground/30'}`}></div>
+        <div className={`w-2 h-2 ${isDark ? 'bg-primary/50' : 'bg-foreground/30'}`}></div>
+      </div>
       
       <img
         src={aboutImage}
@@ -130,19 +139,22 @@ const Industries = () => {
       </section>
 
       {/* Services */}
-      <section className="py-8 bg-background">
+      <section className="bg-cream">
         <div className="container mx-auto px-6">
-          <div className="space-y-8">
+          <div className="space-y-0">
             {services.map((service, index) => (
-              <div key={index} className="bg-cream p-6 md:p-10">
+              <div 
+                key={index} 
+                className={`p-6 md:p-10 ${service.isDark ? 'bg-background' : 'bg-cream'}`}
+              >
                 {/* Header */}
                 <div className="flex items-start gap-4 mb-8">
-                  <GridIcon />
+                  <GridIcon isDark={service.isDark} />
                   <div>
-                    <h2 className="font-heading text-xl md:text-2xl text-card-foreground mb-2">
+                    <h2 className={`font-heading text-xl md:text-2xl mb-2 ${service.isDark ? 'text-foreground' : 'text-card-foreground'}`}>
                       {service.title}
                     </h2>
-                    <p className="text-card-foreground/70 max-w-md">
+                    <p className={`max-w-md ${service.isDark ? 'text-muted-foreground' : 'text-card-foreground/70'}`}>
                       {service.description}
                     </p>
                   </div>
@@ -152,7 +164,7 @@ const Industries = () => {
                 <div className="grid md:grid-cols-2 gap-8">
                   {/* Image */}
                   <div className="order-2 md:order-1">
-                    <ImageWithCorners />
+                    <ImageWithCorners isDark={service.isDark} />
                   </div>
 
                   {/* List */}
@@ -161,7 +173,11 @@ const Industries = () => {
                       {service.items.map((item, idx) => (
                         <div 
                           key={idx} 
-                          className="py-2 border-b border-card-foreground/20 text-xs md:text-sm tracking-wider text-card-foreground font-mono"
+                          className={`py-2 border-b text-xs md:text-sm tracking-wider font-mono ${
+                            service.isDark 
+                              ? 'border-border text-foreground' 
+                              : 'border-card-foreground/20 text-card-foreground'
+                          }`}
                         >
                           {String(idx + 1).padStart(2, '0')} {item}
                         </div>
@@ -171,7 +187,11 @@ const Industries = () => {
                     {service.hasViewService && (
                       <a 
                         href="#" 
-                        className="inline-flex items-center gap-2 mt-6 text-card-foreground hover:text-primary transition-colors font-medium"
+                        className={`inline-flex items-center gap-2 mt-6 font-medium transition-colors ${
+                          service.isDark 
+                            ? 'text-foreground hover:text-primary' 
+                            : 'text-card-foreground hover:text-primary'
+                        }`}
                       >
                         View Service
                         <ArrowRight size={16} />

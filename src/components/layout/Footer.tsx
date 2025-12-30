@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import CTABanner from "./CTABanner";
 
 const Footer = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -45,7 +46,9 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-background border-t border-border">
+    <>
+      <CTABanner />
+      <footer className="bg-background border-t border-border">
       {/* Contact Info Bar */}
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 py-8 border-b border-border">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -192,7 +195,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+      </footer>
+    </>
   );
 };
 
