@@ -1,166 +1,186 @@
-import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import Layout from "@/components/layout/Layout";
-import patternBg from "@/assets/pattern-bg.jpg";
-import { ArrowRight, TrendingUp, Heart, ShoppingCart, Cpu, Building2, Plane, GraduationCap, Zap } from "lucide-react";
+import aboutImage from "@/assets/about-image.jpg";
 
 const Industries = () => {
-  const industries = [
+  const services = [
     {
-      icon: TrendingUp,
-      name: "Finance & Banking",
-      description: "End-to-end financial support from transaction processing to customer service. We ensure compliance, security, and accuracy in every interaction.",
-      services: ["Account Management", "Loan Processing", "Fraud Detection", "Customer Support"],
+      title: "Business planning",
+      description: "We turn your vision into a clear, step-by-step plan so you know exactly what to do to start, grow, and succeed.",
+      items: [
+        "STRATEGIC BUSINESS PLANS",
+        "FEASIBILITY STUDIES",
+        "BUSINESS MODEL DESIGN",
+        "GROWTH PLANNING",
+        "EXPANSION STRATEGY",
+        "EXIT STRATEGY PLANNING",
+        "EXIT STRATEGY PLANNING",
+        "COMPETITIVE ANALYSIS",
+        "PRICING STRATEGY",
+      ],
     },
     {
-      icon: Heart,
-      name: "Healthcare",
-      description: "HIPAA-compliant solutions for healthcare providers. From medical billing to patient support, we handle it with care and precision.",
-      services: ["Medical Billing", "Claims Processing", "Patient Support", "Appointment Scheduling"],
+      title: "Market research",
+      description: "We dig deep into your market so you can make smart decisions based on facts, not guesswork.",
+      items: [
+        "INDUSTRY RESEARCH",
+        "CUSTOMER PROFILING",
+        "DEMAND ANALYSIS",
+        "TREND SPOTTING",
+        "COMPETITOR MAPPING",
+        "LOCATION ANALYSIS",
+        "PRODUCT TESTING FEEDBACK",
+        "PRICING RESEARCH",
+        "SURVEY CREATION & ANALYSIS",
+      ],
+      hasViewService: true,
     },
     {
-      icon: ShoppingCart,
-      name: "E-commerce & Retail",
-      description: "Scalable support for online businesses. We help you deliver exceptional customer experiences that drive sales and loyalty.",
-      services: ["Order Management", "Customer Service", "Returns Processing", "Product Support"],
+      title: "Branding & marketing",
+      description: "We help you look great, sound great, and get noticed — so your business stands out for all the right reasons.",
+      items: [
+        "BRAND IDENTITY DESIGN",
+        "BRAND MESSAGING",
+        "SOCIAL MEDIA SETUP",
+        "WEBSITE CREATION",
+        "MARKETING CAMPAIGNS",
+        "SEO SETUP",
+        "CONTENT CREATION",
+        "BRAND GUIDELINES",
+        "DIGITAL ADS",
+      ],
+      hasViewService: true,
     },
     {
-      icon: Cpu,
-      name: "Technology",
-      description: "Technical expertise for software and SaaS companies. From tier-1 support to complex troubleshooting, we've got the skills.",
-      services: ["Technical Support", "Software Testing", "User Onboarding", "Documentation"],
-    },
-    {
-      icon: Building2,
-      name: "Real Estate",
-      description: "Comprehensive support for property management and real estate firms. We streamline operations and enhance client relationships.",
-      services: ["Lead Management", "Property Listings", "Tenant Support", "Document Processing"],
-    },
-    {
-      icon: Plane,
-      name: "Travel & Hospitality",
-      description: "24/7 support for travel and hospitality businesses. We ensure smooth experiences for your customers around the clock.",
-      services: ["Booking Support", "Concierge Services", "Complaint Resolution", "Loyalty Programs"],
-    },
-    {
-      icon: GraduationCap,
-      name: "Education",
-      description: "Support services for educational institutions and EdTech companies. We help you focus on what matters - education.",
-      services: ["Student Support", "Enrollment Processing", "Course Administration", "Technical Help"],
-    },
-    {
-      icon: Zap,
-      name: "Energy & Utilities",
-      description: "Reliable support for energy and utility companies. We help manage customer inquiries and streamline operations.",
-      services: ["Billing Support", "Service Requests", "Outage Management", "Meter Reading Support"],
+      title: "Financial guidance",
+      description: "We make the money side of business simple, clear, and stress-free with easy-to-follow advice.",
+      items: [
+        "BUDGET CREATION",
+        "CASH FLOW PLANNING",
+        "PROFITABILITY ANALYSIS",
+        "FUNDING ADVICE",
+        "COST CONTROL",
+        "BREAK-EVEN ANALYSIS",
+        "PRICING REVIEWS",
+        "TAX PLANNING",
+        "FINANCIAL REPORTING",
+      ],
+      hasViewService: true,
     },
   ];
+
+  // Grid icon component
+  const GridIcon = () => (
+    <div className="w-16 h-16 md:w-20 md:h-20 bg-cream flex items-center justify-center">
+      <div className="grid grid-cols-4 gap-0.5">
+        {Array.from({ length: 16 }).map((_, i) => (
+          <div 
+            key={i} 
+            className={`w-2 h-2 md:w-2.5 md:h-2.5 ${
+              i < 12 ? 'bg-primary' : 'bg-primary/30'
+            }`} 
+          />
+        ))}
+      </div>
+    </div>
+  );
+
+  // Corner decorations for images
+  const ImageWithCorners = () => (
+    <div className="relative">
+      {/* Corner decorations */}
+      <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-primary/50 -translate-x-2 -translate-y-2" />
+      <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-primary/50 translate-x-2 -translate-y-2" />
+      <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-primary/50 -translate-x-2 translate-y-2" />
+      <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-primary/50 translate-x-2 translate-y-2" />
+      
+      <img
+        src={aboutImage}
+        alt="Business workspace"
+        className="w-full h-64 md:h-80 object-cover grayscale"
+      />
+    </div>
+  );
 
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src={patternBg}
-            alt="Abstract pattern"
-            className="w-full h-full object-cover opacity-30"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+      <section className="pt-32 pb-8 bg-background">
+        <div className="container mx-auto px-6">
+          <div className="text-center">
+            <span className="section-label mb-6 inline-block">■ INDUSTRIES WE SERVE</span>
+          </div>
         </div>
+      </section>
 
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-3xl">
-            <span className="section-label mb-4 block">Industries We Serve</span>
-            <h1 className="heading-xl mb-6">
-              Everything you need to launch, scale, and{" "}
-              <span className="text-primary">succeed</span>
+      {/* Title Section with lime background */}
+      <section className="py-12 bg-primary">
+        <div className="container mx-auto px-6">
+          <div className="text-center">
+            <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl text-background mb-6 leading-tight italic">
+              Everything you need to<br />
+              launch, scale, and succeed
             </h1>
-            <p className="body-lg">
-              Industry-specific expertise that understands your unique challenges 
-              and delivers tailored solutions for your success.
+            <p className="text-background/80 max-w-xl mx-auto">
+              We handle the tricky parts of business so you can focus on what<br />
+              you do best. Clear steps, real results, and support that lasts.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Industries Grid */}
-      <section className="py-24 bg-card">
+      {/* Services */}
+      <section className="py-8 bg-background">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-8">
-            {industries.map((industry, index) => (
-              <div 
-                key={index} 
-                className="card-dark group hover:glow-effect transition-all duration-300"
-              >
-                <div className="flex items-start gap-6">
-                  <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                    <industry.icon className="w-7 h-7 text-primary" />
+          <div className="space-y-8">
+            {services.map((service, index) => (
+              <div key={index} className="bg-cream p-6 md:p-10">
+                {/* Header */}
+                <div className="flex items-start gap-4 mb-8">
+                  <GridIcon />
+                  <div>
+                    <h2 className="font-heading text-xl md:text-2xl text-card-foreground mb-2">
+                      {service.title}
+                    </h2>
+                    <p className="text-card-foreground/70 max-w-md">
+                      {service.description}
+                    </p>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="heading-sm mb-3 group-hover:text-primary transition-colors">
-                      {industry.name}
-                    </h3>
-                    <p className="body-md mb-4">{industry.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {industry.services.map((service, idx) => (
-                        <span 
+                </div>
+
+                {/* Content Grid */}
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* Image */}
+                  <div className="order-2 md:order-1">
+                    <ImageWithCorners />
+                  </div>
+
+                  {/* List */}
+                  <div className="order-1 md:order-2">
+                    <div className="space-y-0">
+                      {service.items.map((item, idx) => (
+                        <div 
                           key={idx} 
-                          className="text-xs px-3 py-1 bg-secondary rounded-full text-secondary-foreground"
+                          className="py-2 border-b border-card-foreground/20 text-xs md:text-sm tracking-wider text-card-foreground font-mono"
                         >
-                          {service}
-                        </span>
+                          {String(idx + 1).padStart(2, '0')} {item}
+                        </div>
                       ))}
                     </div>
+                    
+                    {service.hasViewService && (
+                      <a 
+                        href="#" 
+                        className="inline-flex items-center gap-2 mt-6 text-card-foreground hover:text-primary transition-colors font-medium"
+                      >
+                        View Service
+                        <ArrowRight size={16} />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="section-label mb-4 block">Our Impact</span>
-            <h2 className="heading-lg">Trusted across industries</h2>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: "8+", label: "Industries Served" },
-              { value: "500+", label: "Happy Clients" },
-              { value: "99%", label: "Client Retention" },
-              { value: "24/7", label: "Support Available" },
-            ].map((stat, index) => (
-              <div key={index} className="card-dark">
-                <div className="font-mono text-3xl md:text-4xl font-bold text-primary mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-card">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="section-label mb-4 block">Ready to Start?</span>
-            <h2 className="heading-lg mb-6">
-              Don't see your industry? We still can help.
-            </h2>
-            <p className="body-lg mb-8">
-              Our flexible approach means we can adapt to any industry. 
-              Let's discuss your unique requirements.
-            </p>
-            <Link to="/contact" className="btn-primary">
-              Contact Us
-              <ArrowRight size={18} />
-            </Link>
           </div>
         </div>
       </section>
